@@ -12,6 +12,7 @@ layout(std140, binding = 0) uniform buf {
     float darkness;
     float zoom;
     float hasShot;
+    float arm;
 };
 layout(binding = 1) uniform sampler2D shot;
 
@@ -23,7 +24,8 @@ void main() {
     float ring = smoothstep(radius * 0.80, radius, d) * 0.35;
 
     // Inside the lens: the snapshot, magnified around the aim point
-    vec2 uv = (center + (p - center) / zoom) / resolution;
+    float z = mix(zoom * 0.82, zoom, arm);
+    vec2 uv = (center + (p - center) / z) / resolution;
     vec4 lens = texture(shot, uv);
     vec4 inside = hasShot > 0.5
         ? vec4(lens.rgb * (1.0 - ring), 1.0)

@@ -39,6 +39,10 @@ ShellRoot {
 
             property real lensRadius: 140
             property real zoom: 2.0
+            property real arm: 0.0
+            NumberAnimation on arm {
+                from: 0.0; to: 1.0; duration: 260; easing.type: Easing.OutBack; running: true
+            }
             // Start under the cursor; on other monitors this lands off-screen
             property point aim: Qt.point(root.cursor.x - win.screen.x, root.cursor.y - win.screen.y)
 
@@ -92,9 +96,10 @@ ShellRoot {
                 anchors.fill: parent
                 property size resolution: Qt.size(width, height)
                 property point center: win.aim
-                property real radius: win.lensRadius
-                property real darkness: 0.85
+                property real radius: win.lensRadius + (1.0 - win.arm) * 40
+                property real darkness: 0.85 * win.arm
                 property real zoom: win.zoom
+                property real arm: win.arm
                 property real hasShot: snapshot.status === Image.Ready ? 1.0 : 0.0
                 property var shot: snapshot
                 fragmentShader: Qt.resolvedUrl("shaders/scope.frag.qsb")
