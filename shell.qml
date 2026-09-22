@@ -36,6 +36,11 @@ ShellRoot {
         source: Qt.resolvedUrl("sounds/shot.wav")
     }
 
+    SoundEffect {
+        id: dart
+        source: Qt.resolvedUrl("sounds/dart.wav")
+    }
+
     // Stand down automatically after 30 s without a shot
     Timer { interval: 30000; running: root.phase === "aim"; onTriggered: Qt.quit() }
     // Leave once the kill feed has been shown (also lets the shot sound finish)
@@ -112,8 +117,7 @@ ShellRoot {
             function shoot(tranquilizer) {
                 if (win.fired) return;
                 win.pendingTranq = tranquilizer;
-                gunshot.volume = tranquilizer ? 0.35 : 1.0;
-                gunshot.play();
+                (tranquilizer ? dart : gunshot).play();
                 win.fired = true;
                 fireDelay.start();
             }

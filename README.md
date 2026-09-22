@@ -82,7 +82,10 @@ hl.bind("SUPER + SHIFT + X", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/share
 
 ## Credits
 
-- Gunshot sound: *Sniper Rifle Firing Shot 1* by freesound_community, via [Pixabay](https://pixabay.com/sound-effects/sniper-rifle-firing-shot-1-39789/), under the [Pixabay Content License](https://pixabay.com/service/license-summary/). The sound is not covered by the MIT license.
+- Gunshot sound: *Sniper Rifle Firing Shot 1* by freesound_community, via [Pixabay](https://pixabay.com/sound-effects/sniper-rifle-firing-shot-1-39789/), under the [Pixabay Content License](https://pixabay.com/service/license-summary/).
+- Tranquilizer sound: *Silenced Sniper Rifle* by freesound_community, via [Pixabay](https://pixabay.com/fr/sound-effects/films-et-effets-sp%C3%A9ciaux-silenced-sniper-rifle-105895/), under the same license.
+
+These sounds are not covered by the MIT license.
 
 ## License
 
