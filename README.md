@@ -4,7 +4,7 @@
 
 Think `hyprctl kill` or `xkill`, with a scope, recoil, a gunshot and a kill feed.
 
-![demo](docs/demo.gif)
+<!-- ![demo](docs/demo.gif) -->
 
 ## Features
 
