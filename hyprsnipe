@@ -11,7 +11,7 @@ shots="$(mktemp -d "${XDG_RUNTIME_DIR:-/tmp}/hyprsnipe.XXXXXX")"
 trap 'rm -rf "$shots"' EXIT
 
 for out in $(hyprctl monitors -j | jq -r '.[].name'); do
-    grim -o "$out" "$shots/$out.png" &
+    grim -t ppm -o "$out" "$shots/$out.ppm" &
 done
 wait
 

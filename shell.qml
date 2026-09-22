@@ -85,7 +85,7 @@ ShellRoot {
                 id: snapshot
                 visible: false
                 smooth: true
-                source: root.shotsDir ? "file://" + root.shotsDir + "/" + win.screen.name + ".png" : ""
+                source: root.shotsDir ? "file://" + root.shotsDir + "/" + win.screen.name + ".ppm" : ""
             }
 
             ShaderEffect {
