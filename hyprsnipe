@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# hyprsnipe launcher: snapshot every monitor, then open the scope.
+set -euo pipefail
+
+# Only one scope at a time, even if the keybind is pressed twice
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/hyprsnipe.lock"
+flock -n 9 || exit 0
+
+here="$(dirname "$(realpath "$0")")"
+shots="$(mktemp -d "${XDG_RUNTIME_DIR:-/tmp}/hyprsnipe.XXXXXX")"
+trap 'rm -rf "$shots"' EXIT
+
+for out in $(hyprctl monitors -j | jq -r '.[].name'); do
+    grim -o "$out" "$shots/$out.png" &
+done
+wait
+
+export HYPRSNIPE_SHOTS="$shots"
+export HYPRSNIPE_CURSOR="$(hyprctl cursorpos -j | jq -r '"\(.x),\(.y)"')"
+quickshell -p "$here/shell.qml"
